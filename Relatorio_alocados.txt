@@ -1,0 +1,2 @@
+Solicitação: Ano: 2023, Semestre: 2, Curso: Computations, Vagas: 35, Horários: 24T23, Disciplina: LP2;Sala: Capacidade: 35, Nome: auditorio, Localização: 206;
+Solicitação: Ano: 2023, Semestre: 2, Curso: Computations, Vagas: 35, Horários: 24T23, Disciplina: LP2;Sala: Capacidade: 45, Nome: Saletinha, Localização: 205;
