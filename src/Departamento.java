@@ -11,6 +11,7 @@ public class Departamento {
                 }
             }
         }
+        //função pra ajudar a verificar se pelo menos um dia da semana ou um horario do dia bate
 
         return false;
     }
@@ -24,6 +25,7 @@ public class Departamento {
         } catch (IOException e) {
             System.err.println("Erro ao escrever no arquivo: " + e.getMessage());
         }
+        //so abre o arquivo e escreve a solicitação seguida da sala no arquivo e uma quebra de linha.
 
         return false;
     }
@@ -32,40 +34,42 @@ public class Departamento {
         try{
             File arquivo = new File("./Relatorio_alocados.txt");
             Scanner leitor = new Scanner(arquivo);
-
-
+            //abre arquivo de solicitações já aprovadas, se ele existir, para verificar choques de horario e sala
             String linha, localizacao, horarioAux;
             int posicao;
             while (leitor.hasNextLine()) {
                 linha = leitor.nextLine();
                 localizacao = "";
                 horarioAux = "";
-
+                //pega linha por linha
                 posicao = linha.indexOf("Localização: ");
                 if (posicao != -1) {
                     posicao += "Localização: ".length();
                     for (; posicao <= linha.length() - 1 && linha.charAt(posicao) != ';'; posicao++) {
                         localizacao += linha.charAt(posicao);
-                    }
+                    } //gambi pra pegar a localizacao :)
 
+                    //se localizacao da solicitacao atual for igual a sala recebida, vale a pena verificar se ta ocorrendo choque:
                     if (localizacao.equalsIgnoreCase(sala.localizacao)) {
                         posicao = linha.indexOf("Horários: ");
                         if (posicao != -1) {
                             posicao += "Horários: ".length();
                             for (; posicao <= linha.length() - 1 && linha.charAt(posicao) != ','; posicao++) {
                                 horarioAux += linha.charAt(posicao);
-                            }
+                            } //gambi pra pegar o horario da solicitacao atual
 
                             HorarioSigaa horarioArq = new HorarioSigaa(), horarioSolicitacao = new HorarioSigaa();
                             horarioArq = horarioArq.converteParaSigaa(horarioAux);
                             horarioSolicitacao = horarioSolicitacao.converteParaSigaa(horario);
-                            if (verificaOcorrencia(horarioArq.diaSemana, horarioSolicitacao.diaSemana)) {
-                                if (horarioArq.turno == horarioSolicitacao.turno) {
+                            //convertendo pro objeto horarioSigaa pra facilitar a comparacao.
+                            if (verificaOcorrencia(horarioArq.diaSemana, horarioSolicitacao.diaSemana)) {//se houver pelo menos um dia que bate, continua
+                                if (horarioArq.turno == horarioSolicitacao.turno) {//se o turno também bater, continua:
                                     if (verificaOcorrencia(horarioArq.horaDoDia, horarioSolicitacao.horaDoDia)) {
                                         return false;
                                     }
                                 }
                             }
+                            //codigo um pouco bagunçado mas funciona :)
                         }
                     }
                 }
@@ -79,7 +83,7 @@ public class Departamento {
     }
 
     public Sala alocarAula(Solicitacao solicitacao, ArrayList<Sala> salasDisponiveis){
-        Sala salaEscolhida = salasDisponiveis.get(0);
+        Sala salaEscolhida = null;
         for(Sala s: salasDisponiveis){
             if(s.capacidade == solicitacao.Vagas){
                 if(verificaDisponibilidade(solicitacao.Horarios, s)){
@@ -88,16 +92,26 @@ public class Departamento {
                 };
             }
         }
-
+//        dois laços para procurar primeiro por uma sala que tenha extamente a capacidade requisitada.
+//        Caso nao encontre, procura uma que tenha maior capacidade. Variavel salaEscolhida é usada como auxiliar para escolher a sala com menor
+//        capacidade que atenda a solicitação. Um jeito de otimizar a escolha.
         for(Sala s: salasDisponiveis){
             if(s.capacidade > solicitacao.Vagas){
                 if(verificaDisponibilidade(solicitacao.Horarios, s)){
-                    registrarNoArquivo(solicitacao, s);
-                    return s;
+                    try{
+                        if(s.capacidade<salaEscolhida.capacidade){ //try catch pra evitar usar muito if :)
+                            salaEscolhida = s;
+                        }
+                    }catch (NullPointerException e){
+                        salaEscolhida = s;
+                    }
                 }
             }
         }
 
-        return null;
+        if(salaEscolhida != null){
+            registrarNoArquivo(solicitacao, salaEscolhida);
+        }
+        return salaEscolhida;
     }
 }
