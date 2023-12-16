@@ -1,6 +1,4 @@
-package classes;
-
-import classes.Departamento;
+import classes.*;
 
 import java.util.ArrayList;
 
