@@ -1,3 +1,5 @@
+package classes;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -62,7 +64,7 @@ public class Departamento {
                             horarioArq = horarioArq.converteParaSigaa(horarioAux);
                             horarioSolicitacao = horarioSolicitacao.converteParaSigaa(horario);
                             //convertendo pro objeto horarioSigaa pra facilitar a comparacao.
-                            if (verificaOcorrencia(horarioArq.diaSemana, horarioSolicitacao.diaSemana)) {//se houver pelo menos um dia que bate, continua
+                            if (verificaOcorrencia(horarioArq.diaSemana, horarioSolicitacao.diaSemana)){//se houver pelo menos um dia que bate, continua
                                 if (horarioArq.turno == horarioSolicitacao.turno) {//se o turno também bater, continua:
                                     if (verificaOcorrencia(horarioArq.horaDoDia, horarioSolicitacao.horaDoDia)) {
                                         return false;
@@ -85,18 +87,18 @@ public class Departamento {
     public Sala alocarAula(Solicitacao solicitacao, ArrayList<Sala> salasDisponiveis){
         Sala salaEscolhida = null;
         for(Sala s: salasDisponiveis){
-            if(s.capacidade == solicitacao.Vagas){
+            if(s.capacidade == solicitacao.Vagas && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
                 if(verificaDisponibilidade(solicitacao.Horarios, s)){
                     registrarNoArquivo(solicitacao, s);
                     return s;
                 };
             }
         }
-//        dois laços para procurar primeiro por uma sala que tenha extamente a capacidade requisitada.
+//        dois laços para procurar primeiro por uma sala que tenha exatamente a capacidade requisitada.
 //        Caso nao encontre, procura uma que tenha maior capacidade. Variavel salaEscolhida é usada como auxiliar para escolher a sala com menor
 //        capacidade que atenda a solicitação. Um jeito de otimizar a escolha.
         for(Sala s: salasDisponiveis){
-            if(s.capacidade > solicitacao.Vagas){
+            if(s.capacidade > solicitacao.Vagas  && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
                 if(verificaDisponibilidade(solicitacao.Horarios, s)){
                     try{
                         if(s.capacidade<salaEscolhida.capacidade){ //try catch pra evitar usar muito if :)

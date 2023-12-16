@@ -1,4 +1,8 @@
-public class Solicitacao_Fixa extends Solicitacao{
+package classes;
+
+import classes.Solicitacao;
+
+public class Solicitacao_Fixa extends Solicitacao {
     public String Disciplina;
 
     public Solicitacao_Fixa(String ano, String semestre, String curso, int vagas, String horarios, String disciplina) {

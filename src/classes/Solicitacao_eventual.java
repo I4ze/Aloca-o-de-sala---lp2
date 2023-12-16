@@ -1,4 +1,8 @@
-public class Solicitacao_eventual extends Solicitacao{
+package classes;
+
+import classes.Solicitacao;
+
+public class Solicitacao_eventual extends Solicitacao {
     public String finalidade;
 
     public Solicitacao_eventual(String ano, String semestre, String curso, int vagas, String horarios, String finalidade) {

@@ -1,3 +1,5 @@
+package classes;
+
 import java.util.ArrayList;
 
 public abstract class Sala {
@@ -12,6 +14,6 @@ public abstract class Sala {
     }
 
     public String toString(){
-        return "Sala: Capacidade: "+this.capacidade+", Nome: "+this.nome+", Localização: "+this.localizacao+";";
+        return "classes.Sala: Capacidade: "+this.capacidade+", Nome: "+this.nome+", Localização: "+this.localizacao+";";
     }
 }

@@ -1,7 +1,9 @@
+package classes;
+
 public class HorarioSigaa {
-    String diaSemana;
-    char turno;
-    String horaDoDia;
+    public String diaSemana;
+    public char turno;
+    public String horaDoDia;
 
     public HorarioSigaa() {
         this.horaDoDia = "";

@@ -1,3 +1,5 @@
+package classes;
+
 public abstract class Solicitacao {
     public String Ano;
     public String Semestre;

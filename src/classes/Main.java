@@ -1,3 +1,7 @@
+package classes;
+
+import classes.Departamento;
+
 import java.util.ArrayList;
 
 public class Main {
