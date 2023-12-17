@@ -87,8 +87,8 @@ public class Departamento {
     public Sala alocarAula(Solicitacao solicitacao, ArrayList<Sala> salasDisponiveis){
         Sala salaEscolhida = null;
         for(Sala s: salasDisponiveis){
-            if(s.capacidade == solicitacao.Vagas && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
-                if(verificaDisponibilidade(solicitacao.Horarios, s)){
+            if(s.capacidade == solicitacao.getVagas() && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
+                if(verificaDisponibilidade(solicitacao.getHorarios(), s)){
                     registrarNoArquivo(solicitacao, s);
                     return s;
                 };
@@ -98,8 +98,8 @@ public class Departamento {
 //        Caso nao encontre, procura uma que tenha maior capacidade. Variavel salaEscolhida é usada como auxiliar para escolher a sala com menor
 //        capacidade que atenda a solicitação. Um jeito de otimizar a escolha.
         for(Sala s: salasDisponiveis){
-            if(s.capacidade > solicitacao.Vagas  && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
-                if(verificaDisponibilidade(solicitacao.Horarios, s)){
+            if(s.capacidade > solicitacao.getVagas()  && !(s instanceof Sala_Aula && solicitacao instanceof Solicitacao_eventual)){
+                if(verificaDisponibilidade(solicitacao.getHorarios(), s)){
                     try{
                         if(s.capacidade<salaEscolhida.capacidade){ //try catch pra evitar usar muito if :)
                             salaEscolhida = s;

@@ -1,11 +1,11 @@
 package classes;
 
 public abstract class Solicitacao {
-    public String Ano;
-    public String Semestre;
-    public String Curso;
-    public int Vagas;
-    public String Horarios;
+    private String Ano;
+    private String Semestre;
+    private String Curso;
+    private int Vagas;
+    private String Horarios;
 
     public Solicitacao(String ano, String semestre, String curso, int vagas, String horarios) {
         Ano = ano;
@@ -47,11 +47,11 @@ public abstract class Solicitacao {
         Vagas = vagas;
     }
 
-    public String getHorários() {
+    public String getHorarios() {
         return Horarios;
     }
 
-    public void setHorários(String horarios) {
+    public void setHorarios(String horarios) {
         Horarios = horarios;
     }
 }

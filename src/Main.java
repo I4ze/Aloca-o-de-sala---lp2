@@ -23,6 +23,9 @@ public class Main {
                 if(tipo.equalsIgnoreCase("FIXA")){
                     Solicitacao_Fixa solicitacao = new Solicitacao_Fixa("", "", "", 0, "", "");
                     solicitacao.leLinhaECadastra(linha);
+                } else if (tipo.equalsIgnoreCase("EVENTUAL")){
+                    Solicitacao_eventual solicitacao = new Solicitacao_eventual("", "", "", 0, "", "");
+                    solicitacao.leLinhaECadastra(linha);
                 }
             }
 

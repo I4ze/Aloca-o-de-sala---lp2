@@ -2,6 +2,8 @@ package classes;
 
 import classes.Solicitacao;
 
+import java.util.Scanner;
+
 public class Solicitacao_Fixa extends Solicitacao {
     public String Disciplina;
 
@@ -10,12 +12,49 @@ public class Solicitacao_Fixa extends Solicitacao {
         this.Disciplina = disciplina;
     }
 
-    public Solicitacao_Fixa leLinhaECadastra(String linha){
-        String campoAtual;
-        for(int i = 0; i<)
+    public void leLinhaECadastra(String linha){
+        String campoAtual = "";
+        int contaCampos = 0;
+        Scanner scanner = new Scanner(linha).useDelimiter(";");
+        while(scanner.hasNext()){
+            campoAtual = scanner.next();
+            if(contaCampos == 0){
+                contaCampos++;
+            } else if(contaCampos == 1){
+                this.setAno(campoAtual);
+                contaCampos++;
+                campoAtual = "";
+            } else if (contaCampos == 2) {
+                this.setSemestre(campoAtual);
+                contaCampos++;
+                campoAtual = "";
+            } else if (contaCampos == 3) {
+                this.setCurso(campoAtual);
+                contaCampos++;
+                campoAtual = "";
+            } else if (contaCampos == 4) {
+                this.setDisciplina(campoAtual);
+                contaCampos++;
+                campoAtual = "";
+            } else if (contaCampos == 5) {
+                this.setVagas(Integer.parseInt(campoAtual));
+                contaCampos++;
+                campoAtual = "";
+            } else if (contaCampos == 6) {
+                this.setHorarios(campoAtual);
+            }
+        }
     }
 
     public String toString(){
-        return "Solicitação: Ano: "+this.Ano+", Semestre: "+this.Semestre+", Curso: "+this.Curso+", Vagas: "+this.Vagas+", Horários: "+this.Horarios+", Disciplina: "+this.Disciplina+";";
+        return "Solicitação: Ano: "+this.getAno()+", Semestre: "+this.getSemestre()+", Curso: "+this.getCurso()+", Vagas: "+this.getVagas()+", Horários: "+this.getHorarios()+", Disciplina: "+this.Disciplina+";";
+    }
+
+    public String getDisciplina() {
+        return Disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        Disciplina = disciplina;
     }
 }
