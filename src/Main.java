@@ -1,8 +1,37 @@
 import classes.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+
+    private ArrayList<Solicitacao> lerSolicitacao(){
+        try{
+            File arquivo = new File("./Solicitacoes.txt");
+            Scanner leitor = new Scanner(arquivo);
+            ArrayList <Solicitacao> solicitacoes = new ArrayList<>();
+            String linha, tipo;
+
+            while (leitor.hasNextLine()){
+                linha = leitor.nextLine();
+                tipo = "";
+                for(int i = 0; linha.charAt(i) != ';'; i++){
+                    tipo += linha.charAt(i);
+                }
+                if(tipo.equalsIgnoreCase("FIXA")){
+                    Solicitacao_Fixa solicitacao = new Solicitacao_Fixa("", "", "", 0, "", "");
+                    solicitacao.leLinhaECadastra(linha);
+                }
+            }
+
+        }catch (FileNotFoundException e){
+
+        }
+
+    }
+
     public static void main(String[] args) {
         Departamento departamentoUFMA = new Departamento();
         Solicitacao_Fixa teste = new Solicitacao_Fixa("2023", "2", "Computations", 35, "24T23", "LP2");

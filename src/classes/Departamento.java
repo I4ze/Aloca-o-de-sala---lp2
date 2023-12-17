@@ -64,9 +64,9 @@ public class Departamento {
                             horarioArq = horarioArq.converteParaSigaa(horarioAux);
                             horarioSolicitacao = horarioSolicitacao.converteParaSigaa(horario);
                             //convertendo pro objeto horarioSigaa pra facilitar a comparacao.
-                            if (verificaOcorrencia(horarioArq.diaSemana, horarioSolicitacao.diaSemana)){//se houver pelo menos um dia que bate, continua
-                                if (horarioArq.turno == horarioSolicitacao.turno) {//se o turno também bater, continua:
-                                    if (verificaOcorrencia(horarioArq.horaDoDia, horarioSolicitacao.horaDoDia)) {
+                            if (verificaOcorrencia(horarioArq.getDiaSemana(), horarioSolicitacao.getDiaSemana())){//se houver pelo menos um dia que bate, continua
+                                if (horarioArq.getTurno() == horarioSolicitacao.getTurno()) {//se o turno também bater, continua:
+                                    if (verificaOcorrencia(horarioArq.getHoraDoDia(), horarioSolicitacao.getHoraDoDia())) {
                                         return false;
                                     }
                                 }

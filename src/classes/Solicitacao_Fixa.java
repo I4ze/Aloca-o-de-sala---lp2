@@ -10,6 +10,11 @@ public class Solicitacao_Fixa extends Solicitacao {
         this.Disciplina = disciplina;
     }
 
+    public Solicitacao_Fixa leLinhaECadastra(String linha){
+        String campoAtual;
+        for(int i = 0; i<)
+    }
+
     public String toString(){
         return "Solicitação: Ano: "+this.Ano+", Semestre: "+this.Semestre+", Curso: "+this.Curso+", Vagas: "+this.Vagas+", Horários: "+this.Horarios+", Disciplina: "+this.Disciplina+";";
     }

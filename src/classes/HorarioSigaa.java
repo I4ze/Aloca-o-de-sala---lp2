@@ -1,14 +1,38 @@
 package classes;
 
 public class HorarioSigaa {
-    public String diaSemana;
-    public char turno;
-    public String horaDoDia;
+    private String diaSemana;
+    private char turno;
+    private String horaDoDia;
 
     public HorarioSigaa() {
         this.horaDoDia = "";
         this.turno = ' ';
         this.diaSemana = "";
+    }
+
+    public String getDiaSemana() {
+        return diaSemana;
+    }
+
+    public void setDiaSemana(String diaSemana) {
+        this.diaSemana = diaSemana;
+    }
+
+    public char getTurno() {
+        return turno;
+    }
+
+    public void setTurno(char turno) {
+        this.turno = turno;
+    }
+
+    public String getHoraDoDia() {
+        return horaDoDia;
+    }
+
+    public void setHoraDoDia(String horaDoDia) {
+        this.horaDoDia = horaDoDia;
     }
 
     public HorarioSigaa converteParaSigaa(String horario){
