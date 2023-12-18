@@ -8,11 +8,11 @@ import java.util.Objects;
 public class MyFrame extends JFrame implements ActionListener {
     JButton button;
     MyFrame(){
-        ImageIcon arquivoOriginal = new ImageIcon(Objects.requireNonNull(Menu.class.getResource("/arquivo.png")));
+        ImageIcon arquivoOriginal = new ImageIcon(Objects.requireNonNull(Menu.class.getResource("/arquivo.jpeg")));
         Image imagemRedimensionada = arquivoOriginal.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH); // Altere 100, 100 para o tamanho desejado
         ImageIcon arquivoRedimensionado = new ImageIcon(imagemRedimensionada);
 
-        ImageIcon iconSIGAA =new ImageIcon(Objects.requireNonNull(Menu.class.getResource("/logo.png")));
+        ImageIcon iconSIGAA =new ImageIcon(Objects.requireNonNull(Menu.class.getResource("/logo.jpeg")));
 
         button = new JButton();
         button.setBounds(150, 125, 230, 100);
