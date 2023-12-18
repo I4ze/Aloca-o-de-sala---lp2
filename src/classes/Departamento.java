@@ -61,8 +61,8 @@ public class Departamento {
                             } //gambi pra pegar o horario da solicitacao atual
 
                             HorarioSigaa horarioArq = new HorarioSigaa(), horarioSolicitacao = new HorarioSigaa();
-                            horarioArq = horarioArq.converteParaSigaa(horarioAux);
-                            horarioSolicitacao = horarioSolicitacao.converteParaSigaa(horario);
+                            horarioArq.converteParaSigaa(horarioAux);
+                            horarioSolicitacao.converteParaSigaa(horario);
                             //convertendo pro objeto horarioSigaa pra facilitar a comparacao.
                             if (verificaOcorrencia(horarioArq.getDiaSemana(), horarioSolicitacao.getDiaSemana())){//se houver pelo menos um dia que bate, continua
                                 if (horarioArq.getTurno() == horarioSolicitacao.getTurno()) {//se o turno também bater, continua:

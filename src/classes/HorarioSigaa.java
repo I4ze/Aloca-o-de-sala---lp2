@@ -35,19 +35,16 @@ public class HorarioSigaa {
         this.horaDoDia = horaDoDia;
     }
 
-    public HorarioSigaa converteParaSigaa(String horario){
-        HorarioSigaa hora = new HorarioSigaa();
+    public void converteParaSigaa(String horario){
         int i=0;
         for(;i<horario.length() && Character.isDigit(horario.charAt(i)); i++){
-            hora.diaSemana += horario.charAt(i);
+            this.diaSemana += horario.charAt(i);
         }
 
-        hora.turno = horario.charAt(i);
+        this.turno = horario.charAt(i);
         i++;
         for(;i<horario.length() && Character.isDigit(horario.charAt(i)); i++){
-            hora.horaDoDia += horario.charAt(i);
+            this.horaDoDia += horario.charAt(i);
         }
-
-        return hora;
     }
 }
