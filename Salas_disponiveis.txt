@@ -1,0 +1,9 @@
+tipo;capacidade;nome;localizacao
+sala;30;sala;100
+auditorio;30;sala;101
+sala;40;sala;102
+auditorio;40;sala;103
+sala;30;sala;104
+auditorio;30;sala;105
+sala;40;sala;106
+auditorio;40;sala;107

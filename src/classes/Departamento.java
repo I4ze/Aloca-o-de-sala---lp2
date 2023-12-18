@@ -79,7 +79,6 @@ public class Departamento {
             }
         }
         catch(IOException e){
-            System.out.println("Ainda não há registro de solicitações aprovadas");
         }
         return true;
     }
