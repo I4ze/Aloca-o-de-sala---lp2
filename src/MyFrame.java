@@ -139,9 +139,9 @@ public class MyFrame extends JFrame implements ActionListener {
                 System.out.println(file);
             }
         }
-            if (e.getSource() == saveItem) {
+            if (file != null) {
                 ArrayList <Solicitacao> solicitacoes = lerSolicitacao(file);
-                //balao retornando que arquivo foi lido
+                System.out.println("aaaa");
             }
         }
     }
