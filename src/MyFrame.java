@@ -6,23 +6,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 import java.io.*;
-import java.sql.SQLOutput;
 
 public class MyFrame extends JFrame implements ActionListener {
     JMenuBar menuBar;
     JMenu fileMenu;
-    JMenu editMenu;
-    JMenu helpMenu;
+    JMenu relatoriosMenu;
 
     JMenuItem loadItem;
     JMenuItem saveItem;
     JMenuItem exitItem;
+    JMenuItem relatoriosItem;
+    JMenuItem alocarItem;
     File file;
+    File file2;
+    ArrayList<Solicitacao> solicitacoes;
+
+    ArrayList<Sala> salas;
 
     private ArrayList<Sala> lerSalas(){
         try{
@@ -90,7 +93,6 @@ public class MyFrame extends JFrame implements ActionListener {
 
         ImageIcon iconSIGAA =new ImageIcon(Objects.requireNonNull(Menu.class.getResource("/logo.jpeg")));
 
-
         JLabel label = new JLabel();
         label.setText("Bem-Vindo ao SIGAA");
         label.setBackground(Color.WHITE);
@@ -112,7 +114,7 @@ public class MyFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("SIGAA GERALDO");
         this.setLayout(new FlowLayout());
-        this.setSize(500, 500);
+        this.setSize(500, 350);
         this.add(label, BorderLayout.CENTER);
         this.add(headerPanel);
         this.setIconImage(iconSIGAA.getImage());
@@ -123,24 +125,28 @@ public class MyFrame extends JFrame implements ActionListener {
 
         menuBar = new JMenuBar();
         fileMenu = new JMenu("Arquivo");
-        editMenu = new JMenu("Editar");
-        helpMenu = new JMenu("Ajuda");
+        relatoriosMenu = new JMenu("Relatórios");
 
         loadItem = new JMenuItem("Carregar");
         saveItem = new JMenuItem("Ler solicitacoes");
         exitItem = new JMenuItem("Apagar arquivo");
+        relatoriosItem = new JMenuItem("Mostrar Relatório");
+        alocarItem = new JMenuItem("Alocar Salas");
 
         menuBar.setBackground(new Color(0x6C6CFF));
         loadItem.addActionListener(this);
         saveItem.addActionListener(this);
-        exitItem.addActionListener(this);
+        relatoriosItem.addActionListener(this);
+        alocarItem.addActionListener(this);
 
         fileMenu.add(loadItem);
         fileMenu.add(saveItem);
         fileMenu.add(exitItem);
+        relatoriosMenu.add(relatoriosItem);
+        relatoriosMenu.add(alocarItem);
+
         menuBar.add(fileMenu);
-        menuBar.add(editMenu);
-        menuBar.add(helpMenu);
+        menuBar.add(relatoriosMenu);
 
         this.setJMenuBar(menuBar);
         this.setVisible(true);
@@ -206,7 +212,7 @@ public class MyFrame extends JFrame implements ActionListener {
         }
         if (e.getSource() == saveItem) {
             if(file != null) {
-                ArrayList<Solicitacao> solicitacoes = lerSolicitacao(file);
+                solicitacoes = lerSolicitacao(file);
 
                 if(solicitacoes != null){
                     mostrarConteudoDoArquivo(file); // Método para mostrar o conteúdo do arquivo
@@ -222,6 +228,27 @@ public class MyFrame extends JFrame implements ActionListener {
             file = null;
             if(file == null){
                 openNewWindow("sem arquivo salvo");
+            }
+        }
+        if (e.getSource() == relatoriosItem){
+            JFileChooser fileChooser = new JFileChooser();
+            file2 = new File("Relatorio_alocados.txt");
+            if(file2!=null){
+                mostrarConteudoDoArquivo(file2);
+            } else {
+                openNewWindow("Nenhum relatorio gerado.");
+            }
+        }
+        if (e.getSource() == alocarItem){
+            Departamento departamento = new Departamento();
+            salas = lerSalas();
+            if(solicitacoes != null && salas!=null){
+                for(Solicitacao s:solicitacoes){
+                    departamento.alocarAula(s, salas);
+                }
+                openNewWindow("Salas Alocadas com Sucesso.");
+            } else {
+                openNewWindow("Não há solicitações");
             }
         }
     }

@@ -20,7 +20,7 @@ public class Departamento {
 
     private boolean registrarNoArquivo(Solicitacao solicitacao, Sala s){
         try{
-            BufferedWriter escritor = new BufferedWriter(new FileWriter("./Relatorio_alocados.txt", true));
+            BufferedWriter escritor = new BufferedWriter(new FileWriter("Relatorio_alocados.txt", true));
             escritor.write(solicitacao.toString()+s.toString()+'\n');
             escritor.close();
             return true;
@@ -34,7 +34,7 @@ public class Departamento {
 
     private boolean verificaDisponibilidade(String horario, Sala sala){
         try{
-            File arquivo = new File("./Relatorio_alocados.txt");
+            File arquivo = new File("Relatorio_alocados.txt");
             Scanner leitor = new Scanner(arquivo);
             //abre arquivo de solicitações já aprovadas, se ele existir, para verificar choques de horario e sala
             String linha, localizacao, horarioAux;

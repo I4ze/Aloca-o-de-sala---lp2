@@ -1,0 +1,3 @@
+Solicitação: Ano: 2023, Semestre: 2, Curso: Ciencia da computacao, Vagas: 30, Horários: 23T45, Disciplina: lp2;classes.Sala: Capacidade: 30, Nome: sala, Localização: 100;
+Solicitação: Ano: 2023, Semestre: 2, Curso: ciencia da computacao, Vagas: 30, Horários: 45M23, Finalidade: tcc;classes.Sala: Capacidade: 30, Nome: sala, Localização: 101;
+Solicitação: Ano: 2023, Semestre: 2, Curso: ciencia da computacao, Vagas: 20, Horários: 23T45, Disciplina: mdl;classes.Sala: Capacidade: 30, Nome: sala, Localização: 101;
