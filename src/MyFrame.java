@@ -141,7 +141,8 @@ public class MyFrame extends JFrame implements ActionListener {
         }
             if (file != null) {
                 ArrayList <Solicitacao> solicitacoes = lerSolicitacao(file);
-                System.out.println("aaaa");
+                
+
             }
         }
     }
